@@ -8,10 +8,14 @@
     text-align: center;
     position: relative;
 }
+.card:hover{
+    transform: scale(0.9);
+}
 .book-img{
-    height: auto;
+    height: 200px;
     width: 100%;
     border-radius: 1rem 1rem 0 0;
+    object-fit: fill;
 }
 .bottom{
     display: flex;
