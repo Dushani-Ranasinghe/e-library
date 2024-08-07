@@ -1,5 +1,6 @@
 import React from "react";
 import "./main.css";
+import Card from "./Card";
 
 export const Main = () => {
   return (
@@ -22,6 +23,14 @@ export const Main = () => {
             </button>
           </div>
         </div>
+      </div>
+      <div className="container">
+        <Card/>
+        <Card/>
+        <Card/>
+        <Card/>
+        <Card/>
+        <Card/>
       </div>
     </div>
   );
