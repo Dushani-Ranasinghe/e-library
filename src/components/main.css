@@ -1,14 +1,30 @@
-:root {
-  --primary-color: #755139ff;
-  --secondary-color: #d4b996ff;
+/* Define the keyframes for the background fade-in */
+@keyframes fadeInBackground {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
-.main-container{
-  height: 100vh;
+
+/* Define the keyframes for text appearance */
+@keyframes fadeInText {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
+
+/* Background fade-in */
 .header {
   width: 100%;
   height: 100vh;
-  box-shadow: 0 5px 10px var(--secondary-color);
+  box-shadow: 0 5px 10px rgba(109, 108, 106, 0.7);
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -16,6 +32,7 @@
   position: relative;
   background-color: rgba(0, 0, 0, 0.6);
   color: #fff;
+  animation: fadeInBackground 1s ease-in-out;
 }
 .header::before {
   content: "";
@@ -26,24 +43,33 @@
   top: 0;
   left: 0;
   z-index: -1;
+  animation: fadeInBackground 1s ease-in-out;
 }
-.row1{
- text-align: center;
- height: 60%;
- display: flex;
- flex-direction: column;
- justify-content: center;
+
+.row1 {
+  text-align: center;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-.row1 h1{
-    font-size: 3rem;
+
+.row1 h1 {
+  font-size: 3rem;
+  animation: fadeInText 1s ease-in-out 1s forwards; /* Animation for h1 */
 }
-.row1 p{
-    color: #ffffffc7;
+.row1 p {
+  color: #ffffffc7;
+  animation: fadeInText 1s ease-in-out 2s forwards; /* Animation for p */
+}
+
+.row2 {
+  animation: fadeInText 1s ease-in-out 3s forwards; /* Animation for row2 */
 }
 .row2 h3{
-    font-size: 1.5rem;
-    text-align: center;
-    margin-bottom: 0.7rem;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 0.7rem;
 }
 .search input {
   padding: 0.7rem 1.5rem;
@@ -53,10 +79,12 @@
   background: rgba(255, 255, 255, 0.1);
   color: #f8f8f8;
 }
+
 ::placeholder {
   color: #f8f8f8;
   text-decoration: none;
 }
+
 .search button {
   padding: 0.7rem 1.5rem;
   font-size: 1rem;
@@ -66,12 +94,17 @@
   color: rgba(32, 31, 31, 0.678);
   cursor: pointer;
 }
-.container{
-    width: 75%;
-    margin: 25px auto 0px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(155px,0.5fr));
-    grid-gap: 20px;
-    box-sizing: border-box;
-    
+
+.container {
+  width: 75%;
+  margin: 25px auto 0px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(155px,0.5fr));
+  grid-gap: 20px;
+  box-sizing: border-box;
+}
+
+/* Ensure the entire page height is used */
+.main-container {
+  height: 100vh;
 }
