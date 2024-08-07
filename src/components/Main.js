@@ -9,7 +9,7 @@ export const Main = () => {
   const containerRef = useRef(null);
 
   const searchBook = () => {
-    const API_KEY = "AIzaSyDkvobdhpM8i-USZyZIBiXlhCc9N-VCYQI";
+    const API_KEY = "";
     const maxResults = 40;
     const searchURL = `https://www.googleapis.com/books/v1/volumes?q=${search}&key=${API_KEY}&maxResults=${maxResults}`;
 
