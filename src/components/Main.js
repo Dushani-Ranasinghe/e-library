@@ -1,18 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./main.css";
 import Card from "./Card";
 import axios from "axios";
 
 export const Main = () => {
   const [search, setSearch] = useState("");
-  const [bookData,setData]= useState([]);
-  const searchbook= (e)=>{
-    if(e.key === "Enter"){
-        axios.get('https://www.googleapis.com/books/v1/volumes?q='+search+'&key=AIzaSyDkvobdhpM8i-USZyZIBiXlhCc9N-VCYQI'+'&maxResults=40')
-        .then(res=>setData(res.data.items))
-        .catch(err=>console.log(err))
+  const [bookData, setData] = useState([]);
+  const containerRef = useRef(null);
+
+  const searchBook = () => {
+    const API_KEY = "AIzaSyDkvobdhpM8i-USZyZIBiXlhCc9N-VCYQI";
+    const maxResults = 40;
+    const searchURL = `https://www.googleapis.com/books/v1/volumes?q=${search}&key=${API_KEY}&maxResults=${maxResults}`;
+
+    axios
+      .get(searchURL)
+      .then((res) => {
+        setData(res.data.items);
+        // Scroll to the container position
+        if (containerRef.current) {
+          window.scrollTo({
+            top: containerRef.current.offsetTop - 20,
+            behavior: "smooth"
+          });
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      searchBook();
     }
-  }
+  };
 
   return (
     <div className="main-container">
@@ -27,19 +47,21 @@ export const Main = () => {
         <div className="row2">
           <h3>Find your book</h3>
           <div className="search">
-            <input type="text" placeholder="Enter Book Name" value={search} onChange={e=>setSearch(e.target.value)} onKeyDown={searchbook}/>
-            <button>
-              {" "}
+            <input
+              type="text"
+              placeholder="Enter Book Name"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              onKeyDown={handleKeyDown}
+            />
+            <button onClick={searchBook}>
               <i className="fas fa-search"></i>
             </button>
           </div>
         </div>
       </div>
-      <div className="container">
-        
-        {
-            <Card book={bookData}/>
-        }
+      <div className="container" ref={containerRef}>
+        {<Card book={bookData} />}
       </div>
     </div>
   );
