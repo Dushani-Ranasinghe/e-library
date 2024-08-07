@@ -2,6 +2,9 @@
   --primary-color: #755139ff;
   --secondary-color: #d4b996ff;
 }
+.main-container{
+  height: 100vh;
+}
 .header {
   width: 100%;
   height: 100vh;

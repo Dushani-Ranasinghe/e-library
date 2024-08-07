@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef,useEffect } from "react";
 import "./main.css";
 import Card from "./Card";
 import axios from "axios";
@@ -20,7 +20,7 @@ export const Main = () => {
         // Scroll to the container position
         if (containerRef.current) {
           window.scrollTo({
-            top: containerRef.current.offsetTop - 20,
+            top: containerRef.current.offsetTop - 10,
             behavior: "smooth"
           });
         }
@@ -33,6 +33,16 @@ export const Main = () => {
       searchBook();
     }
   };
+
+   // useEffect to scroll to the container when bookData is updated
+   useEffect(() => {
+    if (bookData.length > 0 && containerRef.current) {
+      window.scrollTo({
+        top: containerRef.current.offsetTop - 50, // Adjust offset as needed
+        behavior: "smooth"
+      });
+    }
+  }, [bookData]);
 
   return (
     <div className="main-container">

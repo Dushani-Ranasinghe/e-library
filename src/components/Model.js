@@ -23,7 +23,7 @@ const Model = ({show,item,onClose}) => {
                         <h4>{item.volumeInfo.publisher}<span>{item.volumeInfo.publishedDate}</span></h4> <a href={item.volumeInfo.previewLink}><button>More</button></a>
                     </div>
                 </div>
-                <h4 className='description'>{item.volumeInfo.description}</h4>
+                <p className='description'>{item.volumeInfo.description}</p>
             </div>
         </div>
     </>
